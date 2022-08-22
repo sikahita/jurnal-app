@@ -126,7 +126,7 @@ export default class EntryScreen extends React.Component {
                     <TextInput
                         maxLength={15}
                         style={styles.textInput}
-                        onChange={openDatePicker}
+                        onTouchStart={openDatePicker}
                         value={this.state.tanggalBeli}
                         placeholder='Entry Buy Date'
                         multiline={true}
@@ -169,7 +169,8 @@ const styles = StyleSheet.create({
     headerText: {
         color: 'white',
         fontSize: 20,
-        padding: 26,
+        padding: 20,
+        marginTop:20
     },
     scrollContainer: {
         flex: 1,

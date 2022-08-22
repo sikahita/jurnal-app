@@ -8,6 +8,7 @@ import {
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import Entry from './Entry.js';
 import EntryScreen from './EntryScreen.js'
@@ -44,10 +45,14 @@ export default class Home extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
 
+        const setParamsAction = NavigationActions.setParams({
+            params: { title: 'Hello' },
+            key: 'EditScreen',
+        });
 
         let entries = this.state.entryArray.map((val, key) => {
             return <Entry key={key} keyval={key} val={val}
-                deleteMethod={() => this.deleteEntry(key)} editMethod={() => this.editEntry}/>
+                deleteMethod={() => this.deleteEntry(key)}/>
         });
 
         const { spinnerVisibility } = this.state;
@@ -90,11 +95,9 @@ export default class Home extends React.Component {
     deleteEntry(key) {
         this.state.entryArray.splice(key, 1);
         this.setState({ entryArray: this.state.entryArray })
+        alert('Delete Successfully!');
     }
 
-    editEntry(key) {
-        this.props.navigation.navigate('EditScreen')
-    }
 }
 
 const styles = StyleSheet.create({
@@ -112,7 +115,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         fontSize: 20,
-        padding: 26,
+        padding: 20,
+        marginTop:20
     },
     scrollContainer: {
         flex: 1,

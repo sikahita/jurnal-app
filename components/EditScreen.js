@@ -25,6 +25,8 @@ export default class EditScreen extends React.Component {
     }
 
     render() {
+        const { title, harga, tanggal, lokasi } = this.props;
+        console.log(title)
         const openDatePicker = () => {
             this.setState({showDatePicker:true})
         }
@@ -77,10 +79,7 @@ export default class EditScreen extends React.Component {
             }))
             this.props.navigation.goBack()
         }
-        const { navigate } = this.props.navigation;
-        const entryArray = this.props.navigation.getParam('entryArray', []);
-        const receivedValue = this.props.navigation.getParam('receivedValue', () => { });
-        var d = new Date();
+       
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -95,7 +94,7 @@ export default class EditScreen extends React.Component {
                     <TextInput
                         style={styles.textInput}
                         onChangeText={(judulBuku) => this.setState({ judulBuku })}
-                        value={this.state.judulBuku}
+                        value={title}
                         placeholder='Entry Book Title'
                         multiline={true}
                         clearButtonMode='always'
@@ -109,7 +108,7 @@ export default class EditScreen extends React.Component {
                         maxLength={15}
                         style={styles.textInput}
                         onChangeText={(hargaBuku) => this.setState({ hargaBuku })}
-                        value={this.state.hargaBuku}
+                        value={harga}
                         placeholder='Entry Book Price'
                         multiline={true}
                         clearButtonMode='always'
@@ -122,7 +121,7 @@ export default class EditScreen extends React.Component {
                         maxLength={15}
                         style={styles.textInput}
                         onChange={openDatePicker}
-                        value={this.state.tanggalBeli}
+                        value={tanggal}
                         placeholder='Entry Buy Date'
                         multiline={true}
                         clearButtonMode='always'
@@ -140,7 +139,7 @@ export default class EditScreen extends React.Component {
                     <TextInput
                         style={styles.textInput}
                         onChangeText={(lokasiBeli) => this.setState({ lokasiBeli })}
-                        value={this.state.lokasiBeli}
+                        value={lokasi}
                         placeholder='Entry Bookstore or Buy link ecommerce'
                         multiline={true}
                         clearButtonMode='always'
@@ -164,7 +163,8 @@ const styles = StyleSheet.create({
     headerText: {
         color: 'white',
         fontSize: 20,
-        padding: 26,
+        padding: 20,
+        marginTop: 20
     },
     scrollContainer: {
         flex: 1,
